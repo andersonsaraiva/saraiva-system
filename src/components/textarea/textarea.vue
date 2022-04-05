@@ -1,6 +1,8 @@
 <template>
-  <label v-text="label"></label>
-  <textarea />
+  <div>
+    <label v-text="label"></label>
+    <textarea />
+  </div>
 </template>
 <script>
 export default {

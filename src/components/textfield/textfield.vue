@@ -1,6 +1,8 @@
 <template>
-  <label v-text="label"></label>
-  <input :type="type" />
+  <div>
+    <label v-text="label"></label>
+    <input :type="type" />
+  </div>
 </template>
 <script>
 export default {

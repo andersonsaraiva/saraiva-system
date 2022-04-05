@@ -1,18 +1,16 @@
 <template>
-  <button class="on-button" v-bind="$attrs" v-text="title"></button>
+  <button class="on-button" v-text="title"></button>
 </template>
 
 <script>
 export default {
-  name: "OnButton",
-
-  inheritAttrs: false,
+  name: 'OnButton',
 
   props: {
     title: {
       type: String,
-      required: true,
-    },
-  },
+      required: true
+    }
+  }
 };
 </script>
