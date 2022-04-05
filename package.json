@@ -1,0 +1,39 @@
+{
+  "name": "saraiva-system",
+  "version": "1.0.3",
+  "private": false,
+  "main": "dist/saraiva-system.umd.min.js",
+  "unpkg": "dist/saraiva-system.umd.min.js",
+  "jsdelivr": "dist/saraiva-system.umd.min.js",
+  "author": "Anderson Saraiva",
+  "license": "MIT",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --target lib --name saraiva-system src/index.js",
+    "lint": "vue-cli-service lint",
+    "prepublishOnly": "%npm_execpath% build"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.15",
+    "@vue/cli-plugin-eslint": "~4.5.15",
+    "@vue/cli-service": "~4.5.15",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.0.0",
+    "prettier": "^2.2.1"
+  },
+  "keywords": [
+    "vue",
+    "vuejs"
+  ]
+}
