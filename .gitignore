@@ -1,6 +1,9 @@
 .DS_Store
 node_modules
 
+/src/tokens/generated
+/src/icons/generated
+
 
 # local env files
 .env.local
