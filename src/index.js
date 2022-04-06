@@ -1,5 +1,6 @@
 import plugins from './plugins';
 import components from './components';
+import '@@/styles/main.scss';
 
 const plugin = {
   install(Vue) {

@@ -59,9 +59,6 @@
   font: inherit;
   line-height: normal;
   outline: none;
-  font-smoothing: inherit;
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
   -webkit-appearance: none;
 
   &::-moz-focus-inner {
@@ -71,9 +68,10 @@
 }
 
 @mixin clearfix {
-  &:before, &:after {
+  &:before,
+  &:after {
     display: table;
-    content: '';
+    content: "";
     clear: both;
   }
 }
@@ -108,23 +106,19 @@
 }
 
 @mixin border-radius($size, $side: false) {
-  @if ($side == 'top') {
+  @if ($side == "top") {
     border-top-left-radius: $size;
     border-top-right-radius: $size;
-  }
-  @else if ($side == 'bottom') {
+  } @else if ($side == "bottom") {
     border-bottom-left-radius: $size;
     border-bottom-right-radius: $size;
-  }
-  @else if ($side == 'left') {
+  } @else if ($side == "left") {
     border-top-left-radius: $size;
     border-bottom-left-radius: $size;
-  }
-  @else if ($side == 'right') {
+  } @else if ($side == "right") {
     border-top-right-radius: $size;
     border-bottom-right-radius: $size;
-  }
-  @else {
+  } @else {
     border-top-left-radius: $size;
     border-top-right-radius: $size;
     border-bottom-left-radius: $size;

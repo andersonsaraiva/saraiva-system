@@ -6,8 +6,8 @@ module.exports = {
   outputDir: path.resolve(__dirname, './dist'),
   css: {
     loaderOptions: {
-      sass: {
-        data: `@import "@@/styles/index.scss";`
+      scss: {
+        data: `@import "@@/styles/shared.scss";`
       }
     }
   },
