@@ -1,8 +1,14 @@
+import plugins from './plugins';
 import components from './components';
 
 const plugin = {
   install(Vue) {
-    components.forEach(c => Vue.component(c.name, c));
+    for (const prop in components) {
+      const component = components[prop];
+      Vue.component(component.name, component);
+    }
+
+    Vue.use(plugins);
   }
 };
 

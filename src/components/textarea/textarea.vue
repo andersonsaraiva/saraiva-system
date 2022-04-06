@@ -10,8 +10,7 @@ export default {
 
   props: {
     label: {
-      type: String,
-      require: false
+      type: String
     }
   }
 };

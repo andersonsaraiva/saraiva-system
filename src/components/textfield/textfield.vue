@@ -14,8 +14,7 @@ export default {
       default: 'text'
     },
     label: {
-      type: String,
-      require: false
+      type: String
     }
   }
 };

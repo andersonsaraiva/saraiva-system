@@ -1,6 +1,6 @@
 {
   "name": "saraiva-system",
-  "version": "1.0.3",
+  "version": "1.0.12",
   "private": false,
   "main": "dist/saraiva-system.umd.min.js",
   "unpkg": "dist/saraiva-system.umd.min.js",
@@ -9,7 +9,9 @@
   "license": "MIT",
   "files": [
     "dist/*",
-    "src/*"
+    "src/*",
+    "*.json",
+    "*.js"
   ],
   "scripts": {
     "build": "yarn theo && vue-cli-service build",
@@ -18,7 +20,7 @@
     "dev": "npm-run-all --parallel theo:onchange theo servedev",
     "servedev": "vue-cli-service serve --open",
     "theo": "node ./buildtokens.js",
-    "build:lib": "yarn theo && cross-env BUILD=library vue-cli-service build --target lib --name saraiva-system src/index.js",
+    "build:lib": "yarn theo && cross-env BUILD=library vue-cli-service build --target lib --name saraiva-system ./src/index.js",
     "theo:onchange": "onchange \"./src/tokens/*.yml\" \"./src/tokens/themes/**/*.yml\" -- npm run theo"
   },
   "dependencies": {
@@ -40,7 +42,12 @@
     "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",
     "prettier": "^2.6.2",
-    "theo": "^8.1.5"
+    "sass": "^1.49.11",
+    "sass-loader": "^12.6.0",
+    "theo": "^8.1.5",
+    "vue-svg-loader": "^0.16.0",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-merge-and-include-globally": "^2.3.4"
   },
   "keywords": [
     "vue",
