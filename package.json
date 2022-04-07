@@ -21,7 +21,10 @@
     "servedev": "vue-cli-service serve --open",
     "theo": "node ./buildtokens.js",
     "build:lib": "yarn theo && cross-env BUILD=library vue-cli-service build --target lib --name saraiva-system ./src/index.js",
-    "theo:onchange": "onchange \"./src/tokens/*.yml\" \"./src/tokens/themes/**/*.yml\" -- npm run theo"
+    "theo:onchange": "onchange \"./src/tokens/*.yml\" \"./src/tokens/themes/**/*.yml\" -- npm run theo",
+    "test": "vue-cli-service test:unit -u",
+    "coverage": "open-cli coverage/lcov-report/index.html",
+    "prepare": "husky install"
   },
   "dependencies": {
     "vue": "^3.2.31"
