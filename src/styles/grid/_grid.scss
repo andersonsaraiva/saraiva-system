@@ -1,0 +1,144 @@
+// ––––––––––––––––––––––––––––
+// Grid desktop
+// ––––––––––––––––––––––––––––
+
+$gridColumns: (
+  desktop: 12,
+  mobile: 4,
+);
+
+$gridGutter: (
+  desktop: 1.6rem,
+  mobile: 0.8rem,
+);
+
+$gridBreakpointsDesktop: (
+  // portrait phones
+  xs: 0,
+  // landscape phones
+  sm: 480px,
+  // tablets
+  md: 768px,
+  // small desktops
+  lg: 1024px,
+  // desktops
+  xl: 1200px
+);
+
+$gridBreakpointsMobile: (
+  // portrait phones
+  xs: 0,
+  // landscape phones
+  sm: 480px
+);
+
+// -- Grid columns getter
+@function gridColumns($value) {
+  @return map-get($gridColumns, $value);
+}
+
+// -- Grid gutter getter
+@function gridGutter($value) {
+  @return map-get($gridGutter, $value);
+}
+
+// Functions
+@function makeColWidth($col) {
+  @return calc($col/gridColumns(desktop) * 100%);
+}
+
+@mixin columnDefault {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+@mixin columnAuto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+// Grid containers
+.on-container {
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  position: relative;
+}
+
+@media (min-width: 960px) {
+  .on-container {
+    max-width: 900px;
+  }
+}
+
+@media (min-width: 1264px) {
+  .on-container {
+    max-width: 1185px;
+  }
+}
+
+@media (min-width: 1904px) {
+  .on-container {
+    max-width: 1785px;
+  }
+}
+
+.on-container--fluid {
+  max-width: 100%;
+}
+
+// Make row and cols
+.on-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-right: calc(gridGutter(desktop) * -1 / 2);
+  margin-left: calc(gridGutter(desktop) * -1 / 2);
+}
+
+.on-col,
+[class^="on-col-"] {
+  position: relative;
+  width: 100%;
+  padding-right: calc(gridGutter(desktop) / 2);
+  padding-left: calc(gridGutter(desktop) / 2);
+}
+
+@each $breakpoint in map-keys($gridBreakpointsDesktop) {
+  @if $breakpoint == "xs" {
+    .on-col {
+      @include columnDefault();
+    }
+
+    .on-col-auto {
+      @include columnAuto();
+    }
+
+    @for $i from 1 through gridColumns(desktop) {
+      .on-col-#{$i} {
+        flex: 0 0 makeColWidth($i);
+        max-width: makeColWidth($i);
+      }
+    }
+  } @else {
+    @media (min-width: map-get($gridBreakpointsDesktop, $breakpoint)) {
+      .on-col-#{$breakpoint} {
+        @include columnDefault();
+      }
+
+      .on-col-#{$breakpoint}-auto {
+        @include columnAuto();
+      }
+
+      @for $i from 1 through gridColumns(desktop) {
+        .on-col-#{$breakpoint}-#{$i} {
+          flex: 0 0 makeColWidth($i);
+          max-width: makeColWidth($i);
+        }
+      }
+    }
+  }
+}
