@@ -6,6 +6,7 @@ export default {
   install(Vue) {
     Vue.config.globalProperties.$loadTheme = name => {
       const theme = { ...themeMap.base, ...themeMap[name] };
+
       useTheme(theme);
     };
   }
@@ -16,14 +17,16 @@ const useTheme = theme => {
     stylesheet = document.createElement('style');
     document.querySelector('head').append(stylesheet);
   }
+
   const variables = Object.keys(theme)
     .map(key => {
       return `${key}: ${theme[key]};`;
     })
     .join('\n');
+
   stylesheet.innerHTML = `:root {
-  ${variables}
-}`;
+    ${variables}
+  }`;
 };
 
 // Init base theme

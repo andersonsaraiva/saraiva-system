@@ -10,11 +10,13 @@ const dist = './src/tokens/generated';
 
 // Custom transforms
 const unthemable = ['media-query', 'media-size'];
+
 theo.registerValueTransform(
   'cssvar',
   prop => !unthemable.includes(prop.get('category')),
   prop => `var(--${prop.get('name')})`
 );
+
 theo.registerTransform('webvars', ['color/rgb', 'cssvar']);
 
 // Custom formats
@@ -23,7 +25,7 @@ theo.registerFormat('cssvarjs', result => {
     .get('props')
     .map(prop => `\n  "--${kebabCase(prop.get('name'))}": "${prop.get('value')}"`)
     .toJS()}
-}`;
+  }`;
 });
 
 const configs = [
@@ -35,6 +37,7 @@ const configs = [
 ];
 
 const isDirectory = source => lstatSync(source).isDirectory();
+
 const getDirectories = source =>
   readdirSync(source)
     .map(name => join(source, name))
@@ -43,12 +46,14 @@ const getDirectories = source =>
 // Add theme configs
 const addTheme = themeDir => {
   const theme = basename(themeDir);
+
   const config = {
     src: `${themeDir}/tokens.yml`,
     dist: `${dist}/themes/${theme}.js`,
     transform: 'web',
     format: 'cssvarjs'
   };
+
   configs.push(config);
 };
 
@@ -58,6 +63,7 @@ themes.forEach(addTheme);
 
 const write = dist => content => {
   const dir = dirname(dist);
+
   mkdirp.sync(dir);
   writeFileSync(dist, content);
   console.log('built', dist);

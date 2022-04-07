@@ -8,6 +8,7 @@ const themeMap = {};
 themeContext.keys().forEach(key => {
   const theme = themeContext(key).default;
   const name = key.split('.').splice(-2)[0].replace('/', '');
+
   themes.push(name);
   themeMap[name] = theme;
 });
@@ -17,6 +18,7 @@ const { tokens, tokenMap } = Object.keys(raw.props).reduce(
     const token = raw.props[key];
     const name = camelCase(key);
     const category = camelCase(token.category);
+
     if (!tokenMap[category]) {
       tokenMap[category] = {};
     }
@@ -25,6 +27,7 @@ const { tokens, tokenMap } = Object.keys(raw.props).reduce(
 
     tokens[name] = token.value;
     tokenMap[category][name] = token;
+
     return { tokens, tokenMap };
   },
   { tokens: {}, tokenMap: {} }
