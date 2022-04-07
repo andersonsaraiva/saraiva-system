@@ -10,9 +10,7 @@
     ]"
   >
     <slot />
-    <button v-if="removable" @click="remove" class="on-chip-close" tabindex="-1">
-      <on-icon name="close" />
-    </button>
+    <button v-if="removable" @click="remove" class="on-chip-close" tabindex="-1">X</button>
   </component>
 </template>
 
@@ -21,10 +19,6 @@ export default {
   name: 'OnChip',
 
   props: {
-    /**
-     * The background color used for the chip.
-     * @options medium|inverse|primary|success|warning|danger
-     */
     color: {
       type: String,
       default: 'medium',
@@ -32,10 +26,7 @@ export default {
         return value.match(/(medium|inverse|primary|success|warning|danger)/);
       }
     },
-    /**
-     * The size used for the text.
-     * @options base|large|small
-     */
+
     size: {
       type: String,
       default: 'base',
@@ -43,23 +34,17 @@ export default {
         return value.match(/(base|large|small)/);
       }
     },
-    /**
-     * Whether the chip should be removeable
-     */
+
     removable: {
       type: Boolean,
       default: false
     },
-    /**
-     * Whether the chip should be rounded
-     */
+
     round: {
       type: Boolean,
       default: true
     },
-    /**
-     * The html element name used for the text.
-     */
+
     tag: {
       type: String,
       default: 'span'
@@ -67,11 +52,6 @@ export default {
   },
   methods: {
     remove() {
-      /**
-       * Fires after user clicked the remove button.
-       *
-       * @event remove
-       */
       this.$emit('remove');
     }
   }

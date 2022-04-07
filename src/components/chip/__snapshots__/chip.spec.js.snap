@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`chip.vue matches snapshot 1`] = `
+<span
+  class="on-chip on-chip-size-base on-chip-medium on-chip-round"
+>
+  
+  
+  <!--v-if-->
+</span>
+`;
+
+exports[`chip.vue verifica se é emitido ao clicar no icone 1`] = `
+<span
+  class="on-chip on-chip-size-base on-chip-medium on-chip-removable on-chip-round"
+>
+  
+  
+  <button
+    class="on-chip-close"
+    tabindex="-1"
+  >
+    X
+  </button>
+</span>
+`;

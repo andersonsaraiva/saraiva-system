@@ -3,9 +3,6 @@
   position: relative;
   width: auto;
   overflow: visible;
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
-  -webkit-appearance: none;
   border: 0;
   cursor: pointer;
   user-select: none;
@@ -36,7 +33,6 @@
     border-radius: $border-radius-base;
     box-shadow: $box-shadow-inset;
     opacity: 0;
-    visiblity: hidden;
     pointer-events: none;
   }
 
@@ -50,7 +46,6 @@
     border-radius: $border-radius-base;
     border: 1px dotted currentColor;
     opacity: 0;
-    visiblity: hidden;
     pointer-events: none;
     transition: all $duration-short $ease-out;
   }
@@ -129,23 +124,6 @@
   }
 }
 
-.on-button-danger {
-  color: $text-color-danger-inverse;
-  background-color: $background-color-danger;
-
-  &:hover,
-  &.on-button-hover {
-    color: $text-color-danger-inverse;
-    background-color: $background-color-danger-active;
-  }
-
-  &:active {
-    &:before {
-      opacity: 1;
-    }
-  }
-}
-
 .on-button-ghost {
   color: $text-color-base;
   background-color: transparent;
@@ -173,10 +151,6 @@
 
   &.on-button-secondary {
     color: $text-color-secondary;
-  }
-
-  &.on-button-danger {
-    color: $text-color-danger;
   }
 }
 
