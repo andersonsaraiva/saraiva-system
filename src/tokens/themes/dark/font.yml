@@ -5,21 +5,21 @@
 
 props:
   - name: font-family-heading
-    value: "'Ubuntu', sans-serif"
-    category: "font-family"
+    value: 'Ubuntu, sans-serif'
+    category: 'font-family'
   - name: font-family-text
-    value: "'OpenSans', sans-serif"
-    category: "font-family"
+    value: 'OpenSans, sans-serif'
+    category: 'font-family'
   - name: font-family-code
-    value: "inconsolata, monospace"
-    category: "font-family"
+    value: 'inconsolata, monospace'
+    category: 'font-family'
 
   - name: font-weight-regular
-    value: "normal"
-    category: "font-weight"
+    value: 'normal'
+    category: 'font-weight'
   - name: font-weight-bold
-    value: "600"
-    category: "font-weight"
+    value: '600'
+    category: 'font-weight'
 global:
   type: ...
   category: font

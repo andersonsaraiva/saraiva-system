@@ -23,9 +23,10 @@ theo.registerTransform('webvars', ['color/rgb', 'cssvar']);
 theo.registerFormat('cssvarjs', result => {
   return `export default {${result
     .get('props')
-    .map(prop => `\n  "--${kebabCase(prop.get('name'))}": "${prop.get('value')}"`)
+    .map(prop => `\n  '--${kebabCase(prop.get('name'))}': '${prop.get('value')}'`)
     .toJS()}
-  }`;
+};
+`;
 });
 
 const configs = [
