@@ -4,7 +4,7 @@ module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   framework: '@storybook/vue3',
-  webpackFinal(config, { configType }) {
+  webpackFinal(config) {
     config.module.rules.push({
       test: /\.scss$/,
       use: [
@@ -14,7 +14,6 @@ module.exports = {
         {
           loader: require.resolve('sass-resources-loader'),
           options: {
-            // core.scss contains variables, functions, mixins..
             resources: path.resolve(__dirname, '../src/styles/main.scss')
           }
         }

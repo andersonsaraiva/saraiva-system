@@ -179,9 +179,6 @@ $media-query-medium: (min-width: 768px);
 $media-query-large: (min-width: 1024px);
 $media-query-x-large: (min-width: 1200px);
 
-/* BACKGROUND MIXINS
---------------------------------------------- */
-
 @mixin gradient($color-start, $color-end, $angle: 0deg) {
   background: linear-gradient($angle, $color-start, $color-end);
 }
@@ -193,13 +190,10 @@ $media-query-x-large: (min-width: 1200px);
 
 @mixin gradient-pattern($color-start, $color-end, $angle: 0deg) {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 1024' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0)' fill='none'%3E%3Crect width='1440' height='1024' fill='none'/%3E%3Ccircle opacity='0.04' cx='404.5' cy='789.5' r='335.5' fill='white'/%3E%3Ccircle opacity='0.04' cx='1243.5' cy='878.5' r='191.5' fill='white'/%3E%3Ccircle opacity='0.04' cx='653.5' cy='631.5' r='224.5' fill='white'/%3E%3Cg opacity='0.1'%3E%3Cpath d='M58.0292 971.25L187.5 747L316.971 971.25H58.0292Z' stroke='white' stroke-width='2'/%3E%3Cpath d='M1208.9 915.25L1253.5 838L1298.1 915.25H1208.9Z' stroke='white' stroke-width='2'/%3E%3Cpath d='M1284.09 832L1317 775L1349.91 832H1284.09Z' stroke='white' stroke-width='2'/%3E%3Cpath d='M1181.09 889L1214 832L1246.91 889H1181.09Z' stroke='white' stroke-width='2'/%3E%3Cpath d='M1260.56 988L1290 937L1319.44 988H1260.56Z' stroke='white' stroke-width='2'/%3E%3Cpath d='M1109.15 936.25L1129.5 901L1149.85 936.25H1109.15Z' stroke='white' stroke-width='2'/%3E%3Cpath d='M1311.15 890.25L1331.5 855L1351.85 890.25H1311.15Z' stroke='white' stroke-width='2'/%3E%3Cpath d='M182.102 920.75L499.5 371L816.898 920.75H182.102Z' stroke='white' stroke-width='2'/%3E%3C/g%3E%3Ccircle opacity='0.04' cx='769' cy='877' r='440' stroke='white' stroke-width='2'/%3E%3Ccircle opacity='0.04' cx='248' cy='667' r='440' stroke='white' stroke-width='2'/%3E%3Cpath opacity='0.05' d='M979.5 187L1502.15 1092.25H456.854L979.5 187Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect width='1440' height='1024' fill='none'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A"),
-  linear-gradient($angle, $color-start, $color-end);
+    linear-gradient($angle, $color-start, $color-end);
   background-repeat: no-repeat;
   background-position: bottom center;
 }
-
-/* FORM VARIABLES / MIXINS
---------------------------------------------- */
 
 $input-font-size-base: $font-size-base;
 $input-border-size: $border-size-base;
@@ -219,33 +213,15 @@ $input-padding-vertical-large: $space-x-small;
 $input-height-large: calc(
   #{$input-font-size-large} * #{$line-height-base} + (#{$input-padding-vertical-large} + #{$input-border-size}) * 2
 );
-/* GLOBAL FUNCTIONS
---------------------------------------------- */
 
-// Create a tint
-//
-// @param  {Color}  $color to tint
-// @param  {Number} $percentage of `$color` in returned color
-// @return {Color}
 @function tint($color, $percentage) {
   @return mix(white, $color, $percentage);
 }
 
-// Create a shade
-//
-// @param  {Color}  $color to shade
-// @param  {Number} $percentage of `$color` in returned color
-// @return {Color}
 @function shade($color, $percentage) {
   @return mix(black, $color, $percentage);
 }
 
-// Calculate color difference
-// See https://www.w3.org/TR/AERT/#color-contrast for algorithm
-//
-// @param  {Color} $color of foreground
-// @param  {Color} $color of background
-// @return {Boolean}
 @function color-difference($foreground, $background) {
   $r: (max(red($foreground), red($background))) - (min(red($foreground), red($background)));
   $g: (max(green($foreground), green($background))) - (min(green($foreground), green($background)));
@@ -259,11 +235,6 @@ $input-height-large: calc(
   }
 }
 
-// Set text color based on contrast
-//
-// @param  {Color}  $color to set
-// @param  {Color}  $background color to test
-// @param  {Color}  $fallback color to set in case contrast check fails
 @function set-text-color($color, $background, $fallback: null) {
   @if $fallback == null {
     $fallback: #000;
@@ -275,12 +246,6 @@ $input-height-large: calc(
   }
 }
 
-/// Darkens the foreground color by the background color. This is the same as the
-/// “multiply” filter in graphics apps.
-///
-/// @param {Color} $foreground - The color to darken.
-/// @param {Color} $background - The background to base darkening on.
-/// @return {Color} The modified color.
 @function color-multiply($foreground, $background: null) {
   @if $background == null {
     $background: #ffffff;
@@ -289,9 +254,6 @@ $input-height-large: calc(
   @return $foreground * $background / 255;
 }
 
-/// Returns the value in rem for a given pixel value.
-/// @param {Number} $value - The pixel value to be converted.
-/// @return {Number} The converted value in rem.
 @function rem($value) {
   $unit: unit($value);
 
@@ -306,9 +268,6 @@ $input-height-large: calc(
   }
 }
 
-/// Returns the value in pixels for a given rem value.
-/// @param {Number} $value - The rem value to be converted.
-/// @return {Number} The converted value in pixels.
 @function px($value) {
   $unit: unit($value);
 
@@ -323,10 +282,6 @@ $input-height-large: calc(
   }
 }
 
-/// Returns the list of available names in a given map.
-/// @param {Map} $map - The map of data to list the names from.
-/// @param {Number} $map - The level of depth to get names from.
-/// @return {String} The list of names in the map.
 @function available-names($map, $level: 1) {
   @if type-of($map) != "map" {
     @return null;
@@ -355,21 +310,6 @@ $input-height-large: calc(
   @return $output;
 }
 
-/* GLOBAL MIXINS
---------------------------------------------- */
-
-/* AUTO SCALING FOR TYPE WITH MIN/MAX SIZES
-
-  @param {Number}  $responsive  - Viewport-based size
-  @param {Number}  $min         - Minimum font size (px)
-  @param {Number}  $max         - Maximum font size (px) (optional)
-
-  @param {Number}  $fallback    - Fallback for viewport-based units (optional)
-
-  @example SCSS - 5vw size, 35px min & 150px max size + 50px fallback:
-
-  @include responsive-font(5vw, 35px, 150px, 50px);
-*/
 @mixin responsive-font($responsive, $min, $max: false, $fallback: false) {
   $responsive-unitless: $responsive / ($responsive - $responsive + 1);
   $dimension: if(unit($responsive) == "vh", "height", "width");
@@ -394,7 +334,6 @@ $input-height-large: calc(
   font-size: $responsive;
 }
 
-// Reset
 @mixin reset {
   box-sizing: border-box;
   padding: 0;
@@ -433,17 +372,13 @@ $input-height-large: calc(
   }
 }
 
-// Used to prevent text selection on an element
 @mixin prevent-user-select {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
 }
 
-/// Used to hide an element visually, but keeping it accessible for
-/// accessibility tools.
 @mixin visually-hidden {
-  // Need to make sure we override any existing styles.
   position: absolute !important;
   top: 0;
   clip: rect(1px, 1px, 1px, 1px) !important;
@@ -454,9 +389,6 @@ $input-height-large: calc(
   border: 0 !important;
 }
 
-/// To be used on flex items. Resolves some common layout issues, such as
-/// text truncation not respecting padding or breaking out of container.
-/// https://css-tricks.com/flexbox-truncated-text/
 @mixin layout-flex-fix {
   min-width: 0;
   max-width: 100%;
@@ -483,36 +415,15 @@ $input-height-large: calc(
   }
 }
 
-/* VUE DESIGN SYSTEM SPACING HELPERS
---------------------------------------------- */
-
 $spacing-ratio: 1.618;
 
-/*
-  INSET-SPACE: For interface containers.
-  INSET-SQUISH-SPACE: For buttons, form elements, cells.
-  STACK-SPACE: For vertically stacked content.
-  INLINE-SPACE: For things displayed inline.
-*/
-
-// Create inset-space
-//
-// @param  {Number} inset-space to set
 @mixin inset-space($value) {
   padding: $value;
 }
 
-// Create inset-squish-space
-//
-// @param  {Number} inset-squish-space to set
 @mixin inset-squish-space($value) {
   padding: round($value / $spacing-ratio) $value;
 }
-
-// Create stack-space
-//
-// @param  {bottom} margin-bottom to set
-// @param  {top} margin-top to set
 @mixin stack-space($bottom, $top: 0) {
   @if $bottom != 0 {
     margin-bottom: $bottom;
@@ -528,9 +439,6 @@ $spacing-ratio: 1.618;
   }
 }
 
-// Create inline-space
-//
-// @param  {Number} inline-space to set
 @mixin inline-space($value) {
   margin-right: $value;
   &:last-child {
