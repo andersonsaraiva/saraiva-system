@@ -1,8 +1,8 @@
 <template>
   <component
     :is="tag"
-    class="on-chip"
     :class="[
+      'on-chip',
       `on-chip-size-${size}`,
       `on-chip-${color}`,
       removable && 'on-chip-removable',
@@ -10,54 +10,61 @@
     ]"
   >
     <slot />
-    <button v-if="removable" @click="remove" class="on-chip-close" tabindex="-1">X</button>
+    <button
+      v-if="removable"
+      @click="remove"
+      class="on-chip-close"
+      tabindex="-1"
+    >
+      X
+    </button>
   </component>
 </template>
 
 <script>
-export default {
-  name: 'OnChip',
+  export default {
+    name: 'OnChip',
 
-  props: {
-    color: {
-      type: String,
-      default: 'medium',
-      validator: value => {
-        return value.match(/(medium|inverse|primary|success|warning|danger)/);
+    props: {
+      color: {
+        type: String,
+        default: 'medium',
+        validator: (value) => {
+          return value.match(/(medium|inverse|primary|success|warning|danger)/);
+        }
+      },
+
+      size: {
+        type: String,
+        default: 'base',
+        validator: (value) => {
+          return value.match(/(base|large|small)/);
+        }
+      },
+
+      removable: {
+        type: Boolean,
+        default: false
+      },
+
+      round: {
+        type: Boolean,
+        default: true
+      },
+
+      tag: {
+        type: String,
+        default: 'span'
       }
     },
-
-    size: {
-      type: String,
-      default: 'base',
-      validator: value => {
-        return value.match(/(base|large|small)/);
+    methods: {
+      remove() {
+        this.$emit('remove');
       }
-    },
-
-    removable: {
-      type: Boolean,
-      default: false
-    },
-
-    round: {
-      type: Boolean,
-      default: true
-    },
-
-    tag: {
-      type: String,
-      default: 'span'
     }
-  },
-  methods: {
-    remove() {
-      this.$emit('remove');
-    }
-  }
-};
+  };
 </script>
 
 <style lang="scss">
-@import './chip.scss';
+  @import './chip.scss';
 </style>

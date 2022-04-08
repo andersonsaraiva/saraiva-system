@@ -4,7 +4,11 @@ module.exports = {
   testMatch: ['<rootDir>/src/**/*.spec.js'],
   testEnvironment: 'jsdom',
   collectCoverage: true,
-  collectCoverageFrom: ['**/src/components/**/*.vue', '!**/dist/**', '!**/node_modules/**'],
+  collectCoverageFrom: [
+    '**/src/components/**/*.vue',
+    '!**/dist/**',
+    '!**/node_modules/**'
+  ],
   transform: {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.vue$': 'vue-jest'

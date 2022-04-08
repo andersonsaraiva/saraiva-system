@@ -1,20 +1,24 @@
 <template>
-  <component :is="tag" class="on-row" v-bind="$attrs">
+  <component
+    :is="tag"
+    class="on-row"
+    v-bind="$attrs"
+  >
     <slot />
   </component>
 </template>
 
 <script>
-export default {
-  name: 'OnRow',
+  export default {
+    name: 'OnRow',
 
-  inheritAttrs: false,
+    inheritAttrs: false,
 
-  props: {
-    tag: {
-      type: String,
-      default: 'div'
+    props: {
+      tag: {
+        type: String,
+        default: 'div'
+      }
     }
-  }
-};
+  };
 </script>

@@ -14,6 +14,22 @@ module.exports = {
   },
   overrides: [
     {
+      files: '**/*.vue',
+      rules: {
+        'vue/max-attributes-per-line': [
+          'error',
+          {
+            singleline: {
+              max: 3
+            },
+            multiline: {
+              max: 1
+            }
+          }
+        ]
+      }
+    },
+    {
       files: ['**/src/**/*.spec.{j,t}s?(x)'],
       env: {
         jest: true

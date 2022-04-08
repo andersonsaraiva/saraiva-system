@@ -13,39 +13,51 @@ const unthemable = ['media-query', 'media-size'];
 
 theo.registerValueTransform(
   'cssvar',
-  prop => !unthemable.includes(prop.get('category')),
-  prop => `var(--${prop.get('name')})`
+  (prop) => !unthemable.includes(prop.get('category')),
+  (prop) => `var(--${prop.get('name')})`
 );
 
 theo.registerTransform('webvars', ['color/rgb', 'cssvar']);
 
 // Custom formats
-theo.registerFormat('cssvarjs', result => {
+theo.registerFormat('cssvarjs', (result) => {
   return `export default {${result
     .get('props')
-    .map(prop => `\n  '--${kebabCase(prop.get('name'))}': '${prop.get('value')}'`)
+    .map(
+      (prop) => `\n  '--${kebabCase(prop.get('name'))}': '${prop.get('value')}'`
+    )
     .toJS()}
 };
 `;
 });
 
 const configs = [
-  { src, dist: `${dist}/tokens.map.scss`, transform: 'webvars', format: 'map.scss' },
+  {
+    src,
+    dist: `${dist}/tokens.map.scss`,
+    transform: 'webvars',
+    format: 'map.scss'
+  },
   { src, dist: `${dist}/tokens.scss`, transform: 'webvars', format: 'scss' },
-  { src, dist: `${dist}/tokens.raw.json`, transform: 'webvars', format: 'raw.json' },
+  {
+    src,
+    dist: `${dist}/tokens.raw.json`,
+    transform: 'webvars',
+    format: 'raw.json'
+  },
   { src, dist: `${dist}/tokens.json`, transform: 'webvars', format: 'json' },
   { src, dist: `${dist}/themes/base.js`, transform: 'web', format: 'cssvarjs' }
 ];
 
-const isDirectory = source => lstatSync(source).isDirectory();
+const isDirectory = (source) => lstatSync(source).isDirectory();
 
-const getDirectories = source =>
+const getDirectories = (source) =>
   readdirSync(source)
-    .map(name => join(source, name))
+    .map((name) => join(source, name))
     .filter(isDirectory);
 
 // Add theme configs
-const addTheme = themeDir => {
+const addTheme = (themeDir) => {
   const theme = basename(themeDir);
 
   const config = {
@@ -62,7 +74,7 @@ const addTheme = themeDir => {
 const themes = getDirectories(themeSrc);
 themes.forEach(addTheme);
 
-const write = dist => content => {
+const write = (dist) => (content) => {
   const dir = dirname(dist);
 
   mkdirp.sync(dir);
@@ -82,7 +94,7 @@ const transform = ({ src, dist, transform, format }) => {
       }
     })
     .then(write(dist))
-    .catch(error => console.log(`Something went wrong: ${error}`));
+    .catch((error) => console.log(`Something went wrong: ${error}`));
 };
 
 const build = () => {

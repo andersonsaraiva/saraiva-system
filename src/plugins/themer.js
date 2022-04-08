@@ -4,7 +4,7 @@ let stylesheet = null;
 
 export default {
   install(Vue) {
-    Vue.config.globalProperties.$loadTheme = name => {
+    Vue.config.globalProperties.$loadTheme = (name) => {
       const theme = { ...themeMap.base, ...themeMap[name] };
 
       useTheme(theme);
@@ -12,14 +12,14 @@ export default {
   }
 };
 
-const useTheme = theme => {
+const useTheme = (theme) => {
   if (!stylesheet) {
     stylesheet = document.createElement('style');
     document.querySelector('head').append(stylesheet);
   }
 
   const variables = Object.keys(theme)
-    .map(key => {
+    .map((key) => {
       return `${key}: ${theme[key]};`;
     })
     .join('\n');
