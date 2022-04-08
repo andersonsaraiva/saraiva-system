@@ -1,7 +1,4 @@
-// ––––––––––––––––––––––––––––
-// Grid desktop
-// ––––––––––––––––––––––––––––
-
+// -- Variables
 $gridColumns: (
   desktop: 12,
   mobile: 4,
@@ -42,11 +39,12 @@ $gridBreakpointsMobile: (
   @return map-get($gridGutter, $value);
 }
 
-// Functions
+// -- Functions
 @function makeColWidth($col) {
   @return calc($col/gridColumns(desktop) * 100%);
 }
 
+// -- Mixins
 @mixin columnDefault {
   flex-basis: 0;
   flex-grow: 1;
@@ -59,38 +57,7 @@ $gridBreakpointsMobile: (
   max-width: 100%;
 }
 
-// Grid containers
-.on-container {
-  width: 100%;
-  margin: 0 auto;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
-  position: relative;
-}
-
-@media (min-width: 960px) {
-  .on-container {
-    max-width: 900px;
-  }
-}
-
-@media (min-width: 1264px) {
-  .on-container {
-    max-width: 1185px;
-  }
-}
-
-@media (min-width: 1904px) {
-  .on-container {
-    max-width: 1785px;
-  }
-}
-
-.on-container--fluid {
-  max-width: 100%;
-}
-
-// Make row and cols
+// -- Make row and cols
 .on-row {
   display: flex;
   flex-wrap: wrap;

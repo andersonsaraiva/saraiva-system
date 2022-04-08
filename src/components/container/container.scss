@@ -1,0 +1,29 @@
+.on-container {
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  position: relative;
+}
+
+@media (min-width: 960px) {
+  .on-container {
+    max-width: 900px;
+  }
+}
+
+@media (min-width: 1264px) {
+  .on-container {
+    max-width: 1185px;
+  }
+}
+
+@media (min-width: 1904px) {
+  .on-container {
+    max-width: 1785px;
+  }
+}
+
+.on-container--fluid {
+  max-width: 100%;
+}
