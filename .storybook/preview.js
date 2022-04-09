@@ -1,3 +1,7 @@
+import themer from '../src/plugins';
+
+themer;
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
